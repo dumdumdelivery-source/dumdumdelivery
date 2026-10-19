@@ -9,6 +9,7 @@ export const translations = {
     navCart: "Cart",
     navOrders: "Orders",
     navSettings: "Settings",
+    navSupport: "Support",
     navProfile: "Profile",
 
     // Common actions & status
@@ -103,6 +104,7 @@ export const translations = {
     navCart: "கூடை",
     navOrders: "ஆர்டர்கள்",
     navSettings: "அமைப்புகள்",
+    navSupport: "உதவி மையம்",
     navProfile: "சுயவிவரம்",
 
     // Common actions & status

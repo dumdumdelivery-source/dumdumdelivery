@@ -15,6 +15,7 @@ import { OrderConfirmationPage } from "./pages/OrderConfirmationPage";
 import { OrdersHistoryPage } from "./pages/OrdersHistoryPage";
 import { StoresPage } from "./pages/StoresPage";
 import { SettingsPage } from "./pages/SettingsPage";
+import { SupportPage } from "./pages/SupportPage";
 import { LocationsListPage } from "./pages/admin/LocationsListPage";
 import { LocationFormPage } from "./pages/admin/LocationFormPage";
 import { AreasListPage } from "./pages/admin/AreasListPage";
@@ -44,6 +45,7 @@ export const App: React.FC = () => {
                   <Route path="/stores" element={<StoresPage />} />
                   <Route path="/cart" element={<CartPage />} />
                   <Route path="/settings" element={<SettingsPage />} />
+                  <Route path="/support" element={<SupportPage />} />
                   <Route path="/signin" element={<SignInPage />} />
                   <Route
                     path="/profile"

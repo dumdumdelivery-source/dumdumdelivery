@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { User, LogOut, Package, Menu, AlertTriangle, Settings } from "lucide-react";
+import { User, LogOut, Package, Menu, AlertTriangle, Settings, Headphones } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { useSettings } from "../context/SettingsContext";
 import { UserAvatar } from "./UserAvatar";
@@ -70,6 +70,18 @@ export const Header: React.FC = () => {
 
           {/* Right side navigation & actions */}
           <div className="header-actions">
+            {/* Support Icon Button (before settings) */}
+            <button
+              type="button"
+              id="btn-header-support"
+              className="header-support-btn"
+              onClick={() => navigate("/support")}
+              aria-label={t("navSupport")}
+              title={t("navSupport")}
+            >
+              <Headphones size={22} strokeWidth={2.2} />
+            </button>
+
             {/* Settings Icon Button (before signin/profile) */}
             <button
               type="button"

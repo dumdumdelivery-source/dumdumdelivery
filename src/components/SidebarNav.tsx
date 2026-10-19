@@ -14,7 +14,8 @@ import {
   LogIn,
   MapPin,
   Compass,
-  Building2
+  Building2,
+  Headphones
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
@@ -382,6 +383,14 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
               icon={Sliders}
               active={location.pathname === "/settings"}
               onClick={() => handleSelectNav("/settings")}
+            />
+
+            <NavItem
+              id="support"
+              label={t("navSupport")}
+              icon={Headphones}
+              active={location.pathname === "/support"}
+              onClick={() => handleSelectNav("/support")}
             />
 
             {user ? (

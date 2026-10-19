@@ -528,9 +528,10 @@ a {
   transform: scale(0.94);
 }
 
-/* Header Orders & Settings Icon Buttons (Matches Header Menu Toggle Style) */
+/* Header Orders, Settings & Support Icon Buttons (Matches Header Menu Toggle Style) */
 .header-orders-btn,
-.header-settings-btn {
+.header-settings-btn,
+.header-support-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -552,35 +553,43 @@ a {
 .header-orders-btn:focus,
 .header-orders-btn:focus-visible,
 .header-settings-btn:focus,
-.header-settings-btn:focus-visible {
+.header-settings-btn:focus-visible,
+.header-support-btn:focus,
+.header-support-btn:focus-visible {
   outline: none !important;
   box-shadow: none !important;
 }
 
 .header-orders-btn:hover,
-.header-settings-btn:hover {
+.header-settings-btn:hover,
+.header-support-btn:hover {
   background: rgba(53, 23, 15, 0.08);
   color: var(--clr-primary);
   transform: scale(1.06);
 }
 
 .header-orders-btn:active,
-.header-settings-btn:active {
+.header-settings-btn:active,
+.header-support-btn:active {
   transform: scale(0.94);
   background: rgba(53, 23, 15, 0.12);
 }
 
 [data-theme="dark"] .header-orders-btn,
 [data-theme="dark"] .header-settings-btn,
+[data-theme="dark"] .header-support-btn,
 .dark-theme .header-orders-btn,
-.dark-theme .header-settings-btn {
+.dark-theme .header-settings-btn,
+.dark-theme .header-support-btn {
   color: #FFF7E8;
 }
 
 [data-theme="dark"] .header-orders-btn:hover,
 [data-theme="dark"] .header-settings-btn:hover,
+[data-theme="dark"] .header-support-btn:hover,
 .dark-theme .header-orders-btn:hover,
-.dark-theme .header-settings-btn:hover {
+.dark-theme .header-settings-btn:hover,
+.dark-theme .header-support-btn:hover {
   background: rgba(255, 255, 255, 0.08);
   color: var(--clr-primary);
 }
@@ -733,7 +742,8 @@ a {
 
   .btn-menu-toggle,
   .header-orders-btn,
-  .header-settings-btn {
+  .header-settings-btn,
+  .header-support-btn {
     width: 38px;
     height: 38px;
     padding: 0;
