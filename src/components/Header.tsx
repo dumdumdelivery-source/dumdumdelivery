@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { User, LogOut, Package, Menu, AlertTriangle } from "lucide-react";
+import { User, LogOut, Package, Menu, AlertTriangle, Truck } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { useSettings } from "../context/SettingsContext";
 import { UserAvatar } from "./UserAvatar";
@@ -79,7 +79,7 @@ export const Header: React.FC = () => {
               aria-label={t("orderHistory")}
               title={t("orderHistory")}
             >
-              <Package size={20} strokeWidth={2.2} />
+              <Truck size={20} strokeWidth={2.2} />
             </button>
 
             {/* User profile / Sign In action */}
