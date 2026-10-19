@@ -3,12 +3,18 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 import { Capacitor } from '@capacitor/core'
-import { StatusBar } from '@capacitor/status-bar'
+import { StatusBar, Style } from '@capacitor/status-bar'
 
-// Hide status bar when running as an app
+// Configure native status bar edge-to-edge overlay with visible icons
 if (Capacitor.isNativePlatform()) {
-  StatusBar.hide().catch((err) => {
-    console.warn("Failed to hide status bar:", err);
+  StatusBar.setOverlaysWebView({ overlay: true }).catch((err) => {
+    console.warn("Failed to set overlaysWebView:", err);
+  });
+  StatusBar.show().catch((err) => {
+    console.warn("Failed to show status bar:", err);
+  });
+  StatusBar.setStyle({ style: Style.Light }).catch((err) => {
+    console.warn("Failed to set status bar style:", err);
   });
 }
 
