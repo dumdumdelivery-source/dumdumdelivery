@@ -109,10 +109,7 @@ export const Header: React.FC = () => {
                   aria-label={t("signIn")}
                   title={t("signIn")}
                 >
-                  <span className="header-signin-icon-circle">
-                    <User size={15} strokeWidth={2.6} />
-                  </span>
-                  <span>{t("signIn")}</span>
+                  <User size={19} strokeWidth={2.4} />
                   {/* Warning badge is shown on the /signin page when not signed in */}
                   {isSignInPage && (
                     <span className="signin-warning-badge" aria-hidden="true">
