@@ -79,7 +79,7 @@ export const Header: React.FC = () => {
               aria-label={t("orderHistory")}
               title={t("orderHistory")}
             >
-              <Truck size={20} strokeWidth={2.2} />
+              <Truck size={24} strokeWidth={2.2} />
             </button>
 
             {/* User profile / Sign In action */}

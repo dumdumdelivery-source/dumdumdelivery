@@ -528,48 +528,52 @@ a {
   transform: scale(0.94);
 }
 
-/* Header Orders Icon Button */
+/* Header Orders Icon Button (Matches Header Menu Toggle Style) */
 .header-orders-btn {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.85);
-  border: 1.5px solid var(--border-base);
-  color: var(--clr-brown);
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
   cursor: pointer;
-  box-shadow: var(--shadow-sm);
+  color: var(--clr-brown);
+  font-family: inherit;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: none !important;
+  outline: none;
   flex-shrink: 0;
-  position: relative;
+}
+
+.header-orders-btn:focus,
+.header-orders-btn:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .header-orders-btn:hover {
-  transform: scale(1.06);
-  background: #FFFFFF;
+  background: rgba(53, 23, 15, 0.08);
   color: var(--clr-primary);
-  border-color: var(--clr-primary);
-  box-shadow: 0 4px 12px rgba(242, 140, 0, 0.25);
+  transform: scale(1.06);
 }
 
 .header-orders-btn:active {
   transform: scale(0.94);
+  background: rgba(53, 23, 15, 0.12);
 }
 
 [data-theme="dark"] .header-orders-btn,
 .dark-theme .header-orders-btn {
-  background: rgba(46, 22, 14, 0.85);
-  border-color: var(--border-base);
   color: #FFF7E8;
 }
 
 [data-theme="dark"] .header-orders-btn:hover,
 .dark-theme .header-orders-btn:hover {
-  background: var(--bg-card);
+  background: rgba(255, 255, 255, 0.08);
   color: var(--clr-primary);
-  border-color: var(--clr-primary);
 }
 
 /* Header Sign In Button (Circular with Person Icon) */
@@ -718,7 +722,8 @@ a {
     gap: 0.5rem;
   }
 
-  .btn-menu-toggle {
+  .btn-menu-toggle,
+  .header-orders-btn {
     width: 38px;
     height: 38px;
     padding: 0;
@@ -726,7 +731,7 @@ a {
     border-radius: 8px;
     background: transparent;
     border: none;
-    box-shadow: none;
+    box-shadow: none !important;
   }
 
   .brand-logo-img {
