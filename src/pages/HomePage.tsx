@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { RhythmBeatParticles } from "../components/RhythmBeatParticles";
+import { Store, ChevronRight } from "lucide-react";
 
 export const HomePage: React.FC = () => {
   const navigate = useNavigate();
@@ -40,9 +40,6 @@ export const HomePage: React.FC = () => {
         userSelect: "none",
       }}
     >
-      {/* Minimalist brand rhythm beat particles */}
-      <RhythmBeatParticles />
-
       {/* Centered DumDum Delivery Logo Landing Viewport */}
       <section
         className="landing-viewport"
@@ -60,7 +57,16 @@ export const HomePage: React.FC = () => {
           margin: 0,
         }}
       >
-        <div className="landing-content" style={{ margin: "auto" }}>
+        <div
+          className="landing-content"
+          style={{
+            margin: "auto",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "1.75rem",
+          }}
+        >
           <div
             id="landing-logo-btn"
             className="landing-logo-wrapper"
@@ -80,6 +86,39 @@ export const HomePage: React.FC = () => {
               className="landing-central-logo"
             />
           </div>
+
+          {/* Explore Shops CTA Button */}
+          <button
+            id="explore-shops-btn"
+            className="btn-primary"
+            onClick={() => navigate("/stores")}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "0.6rem",
+              padding: "0.85rem 1.8rem",
+              fontSize: "1.05rem",
+              fontWeight: 800,
+              borderRadius: "9999px",
+              boxShadow: "0 8px 24px rgba(242, 140, 0, 0.35)",
+              border: "none",
+              cursor: "pointer",
+              transition: "transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "scale(1.04)";
+              e.currentTarget.style.boxShadow = "0 12px 28px rgba(242, 140, 0, 0.45)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "scale(1)";
+              e.currentTarget.style.boxShadow = "0 8px 24px rgba(242, 140, 0, 0.35)";
+            }}
+          >
+            <Store size={20} strokeWidth={2.3} />
+            <span>Explore Shops</span>
+            <ChevronRight size={18} strokeWidth={2.5} />
+          </button>
         </div>
       </section>
     </div>

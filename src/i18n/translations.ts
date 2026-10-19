@@ -49,7 +49,7 @@ export const translations = {
     langTamilDesc: "முழுமையான தமிழ் மொழி அனுபவம்",
 
     // Stores Page & Location
-    location: "Location",
+    location: "Choose Location",
     chooseLocation: "Choose your location...",
     selectLocation: "Select Location",
     chooseLocalArea: "Choose your local area to discover",
@@ -144,7 +144,7 @@ export const translations = {
     langTamilDesc: "முழுமையான தமிழ் மொழி அனுபவம்",
 
     // Stores Page & Location
-    location: "இருப்பிடம்",
+    location: "இருப்பிடத்தைத் தேர்வுசெய்க",
     chooseLocation: "உங்கள் இருப்பிடத்தைத் தேர்ந்தெடுக்கவும்...",
     selectLocation: "இருப்பிடத்தைத் தேர்ந்தெடுக்கவும்",
     chooseLocalArea: "கண்டறிய உங்கள் உள்ளூர் பகுதியைத் தேர்வு செய்யவும்",
