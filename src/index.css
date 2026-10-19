@@ -413,8 +413,8 @@ a {
   background: rgba(255, 247, 232, 0.94);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: none !important;
-  box-shadow: none !important;
+  border-bottom: 1px solid var(--border-base);
+  box-shadow: 0 4px 18px rgba(53, 23, 15, 0.08);
   padding-top: env(safe-area-inset-top, 0px);
   padding-left: max(0.5rem, env(safe-area-inset-left, 0px));
   padding-right: max(0.5rem, env(safe-area-inset-right, 0px));
