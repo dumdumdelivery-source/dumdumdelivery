@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { RhythmBeatParticles } from "../components/RhythmBeatParticles";
 
 export const HomePage: React.FC = () => {
   const navigate = useNavigate();
@@ -39,6 +40,9 @@ export const HomePage: React.FC = () => {
         userSelect: "none",
       }}
     >
+      {/* Minimalist brand rhythm beat particles */}
+      <RhythmBeatParticles />
+
       {/* Centered DumDum Delivery Logo Landing Viewport */}
       <section
         className="landing-viewport"
