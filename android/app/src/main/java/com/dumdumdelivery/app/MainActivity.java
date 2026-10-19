@@ -32,6 +32,20 @@ public class MainActivity extends BridgeActivity {
             window.setAttributes(layoutParams);
         }
 
+        // Prevent CoordinatorLayout, decorView, or webView from adding unwanted top padding
+        View decorView = window.getDecorView();
+        ViewCompat.setOnApplyWindowInsetsListener(decorView, (v, insets) -> {
+            v.setPadding(0, 0, 0, 0);
+            return insets;
+        });
+
+        if (bridge != null && bridge.getWebView() != null) {
+            ViewCompat.setOnApplyWindowInsetsListener(bridge.getWebView(), (v, insets) -> {
+                v.setPadding(0, 0, 0, 0);
+                return insets;
+            });
+        }
+
         applyImmersiveMode();
     }
 
