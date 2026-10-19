@@ -46,7 +46,7 @@ export const Header: React.FC = () => {
     <>
       <header className="app-header">
         <div className="app-container header-inner">
-          {/* Left section: Menu button + Brand Logo */}
+          {/* Left section: Menu button */}
           <div className="header-left">
             <button
               type="button"
@@ -58,14 +58,16 @@ export const Header: React.FC = () => {
             >
               <Menu size={24} strokeWidth={2.2} />
             </button>
+          </div>
 
+          {/* Center section: Perfectly centered D Logo */}
+          <div className="header-center">
             <Link to="/" className="brand-logo" aria-label="DumDum Delivery - Many Things. One Beat.">
               <img
                 src="/logo-d-courier-transparent.png"
                 alt="DumDum Delivery"
                 className="brand-logo-img brand-logo-d-mark"
               />
-              <span className="brand-logo-name">DumDum</span>
             </Link>
           </div>
 

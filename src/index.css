@@ -433,12 +433,28 @@ a {
   height: 70px;
   gap: 0.75rem;
   padding: 0 1.5rem;
+  position: relative;
 }
 .header-left {
   display: flex;
   align-items: center;
   gap: 0.85rem;
+  flex: 1;
+  justify-content: flex-start;
   min-width: 0;
+  z-index: 2;
+}
+
+.header-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  z-index: 1;
 }
 
 .btn-menu-toggle {
@@ -478,41 +494,27 @@ a {
 }
 
 .brand-logo {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
-  font-weight: 900;
-  font-size: 1.35rem;
-  color: var(--clr-brown);
-  letter-spacing: -0.02em;
+  justify-content: center;
   text-decoration: none;
-  min-width: 0;
+  outline: none;
 }
 .brand-logo-img {
-  height: 44px;
-  max-width: 195px;
+  height: 46px;
+  width: 46px;
   object-fit: contain;
   display: block;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: drop-shadow(0 2px 6px rgba(53, 23, 15, 0.12));
 }
 .brand-logo-d-mark {
-  height: 40px;
-  width: 40px;
+  height: 46px;
+  width: 46px;
   object-fit: contain;
 }
-.brand-logo-name {
-  font-family: var(--font-game);
-  font-size: 1.25rem;
-  font-weight: 900;
-  color: var(--clr-brown);
-  letter-spacing: -0.02em;
-}
-[data-theme="dark"] .brand-logo-name,
-.dark-theme .brand-logo-name {
-  color: #FFF7E8;
-}
 .brand-logo:hover .brand-logo-img {
-  transform: scale(1.04);
+  transform: scale(1.06);
 }
 
 .header-actions {
@@ -750,18 +752,11 @@ a {
     box-shadow: none !important;
   }
 
-  .brand-logo-img {
-    height: 36px;
-    max-width: 140px;
-  }
-
+  .brand-logo-img,
   .brand-logo-d-mark {
-    height: 34px;
-    width: 34px;
-  }
-
-  .brand-logo-name {
-    font-size: 1.1rem;
+    height: 38px;
+    width: 38px;
+    max-width: 38px;
   }
 
   .header-actions {
