@@ -5,13 +5,21 @@ import App from './App.tsx'
 import { Capacitor } from '@capacitor/core'
 import { StatusBar } from '@capacitor/status-bar'
 
-// Configure native status bar: hidden with overlay so content extends to the top edge
+import { Style } from '@capacitor/status-bar'
+
+// Configure native status bar: normal visible bar with matching cream background and dark icons
 if (Capacitor.isNativePlatform()) {
-  StatusBar.setOverlaysWebView({ overlay: true }).catch((err) => {
+  StatusBar.show().catch((err) => {
+    console.warn("Failed to show status bar:", err);
+  });
+  StatusBar.setOverlaysWebView({ overlay: false }).catch((err) => {
     console.warn("Failed to set overlaysWebView:", err);
   });
-  StatusBar.hide().catch((err) => {
-    console.warn("Failed to hide status bar:", err);
+  StatusBar.setBackgroundColor({ color: '#FFF7E8' }).catch((err) => {
+    console.warn("Failed to set status bar background color:", err);
+  });
+  StatusBar.setStyle({ style: Style.Light }).catch((err) => {
+    console.warn("Failed to set status bar style:", err);
   });
 }
 

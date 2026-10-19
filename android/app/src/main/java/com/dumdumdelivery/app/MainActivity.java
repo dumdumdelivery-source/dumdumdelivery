@@ -1,14 +1,9 @@
 package com.dumdumdelivery.app;
 
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
-import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 import com.getcapacitor.BridgeActivity;
 
@@ -19,70 +14,18 @@ public class MainActivity extends BridgeActivity {
         super.onCreate(savedInstanceState);
 
         Window window = getWindow();
-        // Allow content to draw edge-to-edge behind the system bars
-        WindowCompat.setDecorFitsSystemWindows(window, false);
+        // Allow the system to fit windows naturally so content starts below the status bar
+        WindowCompat.setDecorFitsSystemWindows(window, true);
 
-        // Transparent bar colors
-        window.setStatusBarColor(Color.TRANSPARENT);
-        window.setNavigationBarColor(Color.TRANSPARENT);
+        // Set matching cream color for status bar (#FFF7E8)
+        int creamColor = Color.parseColor("#FFF7E8");
+        window.setStatusBarColor(creamColor);
 
-        // Support cutout notches so content renders into notch area
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            WindowManager.LayoutParams layoutParams = window.getAttributes();
-            layoutParams.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
-            window.setAttributes(layoutParams);
-        }
-
-        // Prevent CoordinatorLayout, decorView, or webView from adding unwanted top padding
-        View decorView = window.getDecorView();
-        ViewCompat.setOnApplyWindowInsetsListener(decorView, (v, insets) -> {
-            v.setPadding(0, 0, 0, 0);
-            return insets;
-        });
-
-        if (bridge != null && bridge.getWebView() != null) {
-            ViewCompat.setOnApplyWindowInsetsListener(bridge.getWebView(), (v, insets) -> {
-                v.setPadding(0, 0, 0, 0);
-                return insets;
-            });
-        }
-
-        applyImmersiveMode();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        applyImmersiveMode();
-    }
-
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        if (hasFocus) {
-            applyImmersiveMode();
-        }
-    }
-
-    private void applyImmersiveMode() {
-        Window window = getWindow();
-        View decorView = window.getDecorView();
-        WindowInsetsControllerCompat insetsController = WindowCompat.getInsetsController(window, decorView);
-
+        // Ensure status bar icons (clock, battery, notifications) are dark and clearly readable
+        WindowInsetsControllerCompat insetsController = WindowCompat.getInsetsController(window, window.getDecorView());
         if (insetsController != null) {
-            // Hide ONLY status bar (clock, battery, notifications)
-            // Leave navigation bars (home, back gestures) intact
-            insetsController.hide(WindowInsetsCompat.Type.statusBars());
-
-            // BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE allows swiping down from top edge
-            // to temporarily reveal the status bar and notification shade, which then auto-hides
-            insetsController.setSystemBarsBehavior(
-                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-            );
-
-            // Light icons contrast when revealed
             insetsController.setAppearanceLightStatusBars(true);
-            insetsController.setAppearanceLightNavigationBars(true);
+            insetsController.show(androidx.core.view.WindowInsetsCompat.Type.statusBars());
         }
     }
 }
