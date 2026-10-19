@@ -206,6 +206,7 @@ export const StoresPage: React.FC = () => {
                 .replace(/(^-|-$)/g, "") || shop.id,
             description: shop.detailedAddress || "DumDum partner store",
             imageUrl:
+              shop.imageUrl ||
               "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80",
             isActive: shop.status !== "inactive",
             rating: typeof shop.rating === "number" ? shop.rating : 4.8,

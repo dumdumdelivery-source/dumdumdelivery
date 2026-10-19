@@ -244,13 +244,41 @@ export const ShopsListPage: React.FC = () => {
                     >
                       {/* Legal Name & Req No */}
                       <td style={{ padding: "1rem 1.25rem" }}>
-                        <div style={{ fontWeight: 900, color: "var(--clr-brown)", fontSize: "0.95rem" }}>
-                          {shop.shopLegalName}
-                        </div>
-                        <div style={{ display: "inline-flex", alignItems: "center", gap: "4px", fontSize: "11px", fontWeight: 800, color: "#B8420B", marginTop: "3px" }}>
-                          <span style={{ background: "rgba(184, 66, 11, 0.08)", padding: "1px 6px", borderRadius: "6px" }}>
-                            {shop.reqNo}
-                          </span>
+                        <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                          <div
+                            style={{
+                              width: "38px",
+                              height: "38px",
+                              borderRadius: "10px",
+                              background: "rgba(242, 140, 0, 0.1)",
+                              border: "1.5px solid var(--border-base)",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              overflow: "hidden",
+                              flexShrink: 0,
+                            }}
+                          >
+                            {shop.imageUrl ? (
+                              <img
+                                src={shop.imageUrl}
+                                alt={shop.shopLegalName}
+                                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                              />
+                            ) : (
+                              <Building2 size={18} color="#F28C00" />
+                            )}
+                          </div>
+                          <div>
+                            <div style={{ fontWeight: 900, color: "var(--clr-brown)", fontSize: "0.95rem" }}>
+                              {shop.shopLegalName}
+                            </div>
+                            <div style={{ display: "inline-flex", alignItems: "center", gap: "4px", fontSize: "11px", fontWeight: 800, color: "#B8420B", marginTop: "3px" }}>
+                              <span style={{ background: "rgba(184, 66, 11, 0.08)", padding: "1px 6px", borderRadius: "6px" }}>
+                                {shop.reqNo}
+                              </span>
+                            </div>
+                          </div>
                         </div>
                       </td>
 
@@ -441,9 +469,35 @@ export const ShopsListPage: React.FC = () => {
                   </span>
                 </div>
 
-                {/* Shop Legal Name */}
-                <div style={{ fontSize: "1.05rem", fontWeight: 900, color: "var(--clr-brown)", lineHeight: 1.25 }}>
-                  {shop.shopLegalName}
+                {/* Shop Legal Name & Image */}
+                <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                  <div
+                    style={{
+                      width: "44px",
+                      height: "44px",
+                      borderRadius: "10px",
+                      background: "rgba(242, 140, 0, 0.1)",
+                      border: "1.5px solid var(--border-base)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      overflow: "hidden",
+                      flexShrink: 0,
+                    }}
+                  >
+                    {shop.imageUrl ? (
+                      <img
+                        src={shop.imageUrl}
+                        alt={shop.shopLegalName}
+                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                      />
+                    ) : (
+                      <Building2 size={20} color="#F28C00" />
+                    )}
+                  </div>
+                  <div style={{ fontSize: "1.05rem", fontWeight: 900, color: "var(--clr-brown)", lineHeight: 1.25 }}>
+                    {shop.shopLegalName}
+                  </div>
                 </div>
 
                 {/* Owner & Phone details */}
@@ -578,6 +632,25 @@ export const ShopsListPage: React.FC = () => {
                 ✕
               </button>
             </div>
+
+            {viewShop.imageUrl && (
+              <div
+                style={{
+                  width: "100%",
+                  height: "140px",
+                  borderRadius: "12px",
+                  overflow: "hidden",
+                  marginBottom: "1rem",
+                  border: "1.5px solid var(--border-base)",
+                }}
+              >
+                <img
+                  src={viewShop.imageUrl}
+                  alt={viewShop.shopLegalName}
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              </div>
+            )}
 
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem", fontSize: "0.85rem", marginBottom: "1rem" }}>
               <div style={{ background: "rgba(53,23,15,0.03)", padding: "0.75rem", borderRadius: "10px" }}>

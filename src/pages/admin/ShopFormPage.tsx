@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   Building2,
@@ -16,9 +16,15 @@ import {
   Hash,
   AlignLeft,
   IndianRupee,
-  Star
+  Star,
+  Upload,
+  ImageIcon,
+  X,
+  Camera,
+  CheckCircle2,
 } from "lucide-react";
 import { createShop, getShopById, getLocations, updateShop } from "../../services/adminService";
+import { uploadImageToCloudinary } from "../../services/cloudinaryService";
 import type { LocationItem } from "../../types/admin";
 import { getFriendlyErrorMessage } from "../../utils/errorUtils";
 import { CustomSelect } from "../../components/CustomSelect";
@@ -41,12 +47,44 @@ export const ShopFormPage: React.FC = () => {
   const [paymentPercentage, setPaymentPercentage] = useState<number | string>(5.0);
   const [minimumOrderAmount, setMinimumOrderAmount] = useState<number | string>(100);
   const [rating, setRating] = useState<number | string>(4.8);
+  const [imageUrl, setImageUrl] = useState("");
+  const [uploadingImage, setUploadingImage] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Lookups and Status
   const [locations, setLocations] = useState<LocationItem[]>([]);
   const [loading, setLoading] = useState(false);
   const [fetching, setFetching] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  const handleImageFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Validate image format
+    if (!file.type.startsWith("image/")) {
+      setError("Please select a valid image file (PNG, JPG, WebP).");
+      return;
+    }
+    // Limit to 10MB
+    if (file.size > 10 * 1024 * 1024) {
+      setError("Image size exceeds 10MB. Please choose a smaller image.");
+      return;
+    }
+
+    try {
+      setUploadingImage(true);
+      setError(null);
+      const uploadedUrl = await uploadImageToCloudinary(file);
+      setImageUrl(uploadedUrl);
+    } catch (err: any) {
+      setError(err?.message || "Failed to upload store image to Cloudinary.");
+    } finally {
+      setUploadingImage(false);
+      // Reset input value so same file can be selected again if needed
+      e.target.value = "";
+    }
+  };
 
   useEffect(() => {
     (async () => {
@@ -69,6 +107,7 @@ export const ShopFormPage: React.FC = () => {
             setPaymentPercentage(shop.paymentPercentage);
             setMinimumOrderAmount(shop.minimumOrderAmount);
             setRating(shop.rating !== undefined ? shop.rating : 4.8);
+            setImageUrl(shop.imageUrl || "");
           } else {
             setError("Shop partner record not found.");
           }
@@ -147,6 +186,7 @@ export const ShopFormPage: React.FC = () => {
         paymentPercentage: Number(paymentPercentage),
         minimumOrderAmount: Number(minimumOrderAmount),
         rating: numRating,
+        imageUrl: imageUrl.trim(),
         status: "active" as const,
       };
 
@@ -291,7 +331,177 @@ export const ShopFormPage: React.FC = () => {
               </div>
             </div>
 
-            {/* ── Section 2: Owner & Contact Numbers ── */}
+            {/* ── Section 2: Store Image & Branding (Cloudinary) ── */}
+            <div className="form-section-card" id="store-image-section">
+              <div className="form-section-header">
+                <div className="form-section-icon" style={{ background: "rgba(242, 140, 0, 0.14)", color: "#F28C00" }}>
+                  <ImageIcon size={18} />
+                </div>
+                <div>
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                    <h2 className="form-section-title">Store Image & Branding</h2>
+                    <span className="form-badge-opt">Optional</span>
+                  </div>
+                  <p className="form-section-desc">Storefront photo, banner, or logo displayed to customers</p>
+                </div>
+              </div>
+
+              {/* Store Image Upload Zone */}
+              <div
+                style={{
+                  border: imageUrl ? "2px solid #1A6E42" : "2px dashed var(--border-base)",
+                  background: imageUrl ? "rgba(26, 110, 66, 0.04)" : "rgba(255, 247, 232, 0.4)",
+                  borderRadius: "18px",
+                  padding: "1.25rem",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "1.25rem",
+                  flexWrap: "wrap",
+                }}
+              >
+                {/* Image Preview Box */}
+                <div
+                  style={{
+                    width: "100px",
+                    height: "100px",
+                    borderRadius: "16px",
+                    background: "#FFFFFF",
+                    border: "2px solid #E8D9C6",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    overflow: "hidden",
+                    position: "relative",
+                    flexShrink: 0,
+                    boxShadow: "0 3px 10px rgba(53, 23, 15, 0.08)",
+                  }}
+                >
+                  {imageUrl ? (
+                    <>
+                      <img
+                        src={imageUrl}
+                        alt="Store Preview"
+                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setImageUrl("")}
+                        aria-label="Remove store image"
+                        title="Remove Store Image"
+                        style={{
+                          position: "absolute",
+                          top: "5px",
+                          right: "5px",
+                          width: "22px",
+                          height: "22px",
+                          borderRadius: "50%",
+                          background: "rgba(53, 23, 15, 0.85)",
+                          color: "#FFFFFF",
+                          border: "none",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          cursor: "pointer",
+                        }}
+                      >
+                        <X size={13} />
+                      </button>
+                    </>
+                  ) : (
+                    <div style={{ textAlign: "center", padding: "0.25rem" }}>
+                      <Camera size={34} color="#D97B00" style={{ opacity: 0.5, margin: "0 auto 4px" }} />
+                      <span style={{ fontSize: "10px", fontWeight: 800, color: "var(--txt-muted)", display: "block" }}>
+                        No Image
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                {/* File picker & actions */}
+                <div style={{ flex: "1 1 260px", minWidth: 0 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexWrap: "wrap", marginBottom: "0.6rem" }}>
+                    {/* Native file input with ref */}
+                    <input
+                      ref={fileInputRef}
+                      id="shop-image-file"
+                      type="file"
+                      accept="image/*"
+                      style={{ display: "none" }}
+                      disabled={uploadingImage}
+                      onChange={handleImageFileChange}
+                    />
+
+                    {/* Prominent Browse / Upload Button */}
+                    <button
+                      type="button"
+                      id="btn-choose-store-image"
+                      className="btn-primary"
+                      disabled={uploadingImage}
+                      onClick={() => fileInputRef.current?.click()}
+                      style={{
+                        padding: "0.65rem 1.25rem",
+                        fontSize: "0.875rem",
+                        fontWeight: 800,
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.5rem",
+                        cursor: uploadingImage ? "not-allowed" : "pointer",
+                      }}
+                    >
+                      {uploadingImage ? (
+                        <>
+                          <div className="loading-spinner" style={{ width: "15px", height: "15px" }} />
+                          <span>Uploading to Cloudinary...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Upload size={16} />
+                          <span>{imageUrl ? "Change Store Image" : "Upload Store Image"}</span>
+                        </>
+                      )}
+                    </button>
+
+                    {imageUrl && (
+                      <span style={{ fontSize: "12px", fontWeight: 800, color: "#1A6E42", display: "inline-flex", alignItems: "center", gap: "5px" }}>
+                        <CheckCircle2 size={16} />
+                        <span>Saved in Cloudinary</span>
+                      </span>
+                    )}
+                  </div>
+
+                  <p style={{ margin: "0 0 0.75rem 0", fontSize: "0.775rem", color: "var(--txt-muted)", fontWeight: 600 }}>
+                    Select an image from device gallery, file system, or camera. JPG, PNG, WebP up to 10MB.
+                  </p>
+
+                  {/* Direct URL input */}
+                  <div className="form-group" style={{ margin: 0 }}>
+                    <div className="form-label-row">
+                      <label className="form-label" htmlFor="shop-image-url" style={{ fontSize: "0.775rem" }}>
+                        <ImageIcon size={13} color="#F28C00" />
+                        <span>Store Image URL</span>
+                      </label>
+                      <span className="form-badge-opt">Auto-filled</span>
+                    </div>
+                    <div className="form-input-wrapper">
+                      <span className="form-input-icon">
+                        <ImageIcon size={16} />
+                      </span>
+                      <input
+                        id="shop-image-url"
+                        type="url"
+                        className="form-input has-icon"
+                        style={{ fontSize: "0.825rem", padding: "0.55rem 0.75rem 0.55rem 2.5rem" }}
+                        placeholder="https://res.cloudinary.com/mtyahieb/... or paste web image URL"
+                        value={imageUrl}
+                        onChange={(e) => setImageUrl(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* ── Section 3: Owner & Contact Numbers ── */}
             <div className="form-section-card">
               <div className="form-section-header">
                 <div className="form-section-icon">
@@ -409,7 +619,7 @@ export const ShopFormPage: React.FC = () => {
               </div>
             </div>
 
-            {/* ── Section 3: Operating Location & Detailed Address ── */}
+            {/* ── Section 4: Operating Location & Detailed Address ── */}
             <div className="form-section-card">
               <div className="form-section-header">
                 <div className="form-section-icon">
@@ -481,7 +691,7 @@ export const ShopFormPage: React.FC = () => {
               </div>
             </div>
 
-            {/* ── Section 4: Commercial & Order Terms ── */}
+            {/* ── Section 5: Commercial & Order Terms ── */}
             <div className="form-section-card">
               <div className="form-section-header">
                 <div className="form-section-icon">

@@ -328,6 +328,7 @@ export async function getShops(): Promise<ShopItem[]> {
         paymentPercentage: typeof data.paymentPercentage === "number" ? data.paymentPercentage : 5.0,
         minimumOrderAmount: typeof data.minimumOrderAmount === "number" ? data.minimumOrderAmount : 100,
         rating: typeof data.rating === "number" ? data.rating : 4.8,
+        imageUrl: data.imageUrl || "",
         status: data.status || "active",
         createdAt: data.createdAt,
         updatedAt: data.updatedAt
@@ -362,6 +363,7 @@ export async function getShopById(id: string): Promise<ShopItem | null> {
         paymentPercentage: typeof data.paymentPercentage === "number" ? data.paymentPercentage : 5.0,
         minimumOrderAmount: typeof data.minimumOrderAmount === "number" ? data.minimumOrderAmount : 100,
         rating: typeof data.rating === "number" ? data.rating : 4.8,
+        imageUrl: data.imageUrl || "",
         status: data.status || "active",
         createdAt: data.createdAt,
         updatedAt: data.updatedAt
@@ -391,6 +393,7 @@ export async function createShop(data: Omit<ShopItem, "id" | "createdAt" | "upda
     paymentPercentage: Number(data.paymentPercentage) || 0,
     minimumOrderAmount: Number(data.minimumOrderAmount) || 0,
     rating: typeof data.rating === "number" ? data.rating : (Number(data.rating) || 4.8),
+    imageUrl: (data.imageUrl || "").trim(),
     status: data.status || "active"
   };
 
@@ -423,6 +426,7 @@ export async function updateShop(id: string, data: Partial<ShopItem>): Promise<v
   if (payload.reqNo) payload.reqNo = payload.reqNo.trim().toUpperCase();
   if (payload.ownerName) payload.ownerName = payload.ownerName.trim();
   if (payload.detailedAddress) payload.detailedAddress = payload.detailedAddress.trim();
+  if (payload.imageUrl !== undefined) payload.imageUrl = payload.imageUrl.trim();
   if (payload.paymentPercentage !== undefined) payload.paymentPercentage = Number(payload.paymentPercentage);
   if (payload.minimumOrderAmount !== undefined) payload.minimumOrderAmount = Number(payload.minimumOrderAmount);
   if (payload.rating !== undefined) payload.rating = Number(payload.rating);

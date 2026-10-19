@@ -34,6 +34,7 @@ export interface ShopItem {
   paymentPercentage: number; // e.g. 5.5
   minimumOrderAmount: number; // e.g. 150
   rating?: number; // e.g. 4.8 or 5.0
+  imageUrl?: string; // Cloudinary CDN URL for storefront card & avatar
   status?: "active" | "inactive" | "pending";
   createdAt?: any;
   updatedAt?: any;
