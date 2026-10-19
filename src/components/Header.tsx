@@ -70,7 +70,19 @@ export const Header: React.FC = () => {
 
           {/* Right side navigation & actions */}
           <div className="header-actions">
-            {/* User profile action */}
+            {/* Orders Icon Button (before signin/profile) */}
+            <button
+              type="button"
+              id="btn-header-orders"
+              className="header-orders-btn"
+              onClick={() => navigate(user ? "/orders" : "/signin")}
+              aria-label={t("orderHistory")}
+              title={t("orderHistory")}
+            >
+              <Package size={20} strokeWidth={2.2} />
+            </button>
+
+            {/* User profile / Sign In action */}
             <div style={{ position: "relative" }} ref={dropdownRef}>
               {user ? (
                 <button
@@ -89,32 +101,25 @@ export const Header: React.FC = () => {
                   />
                 </button>
               ) : (
-                <>
-                  <button
-                    type="button"
-                    id="btn-header-signin"
-                    className="header-signin-circle-btn"
-                    onClick={handleProfileClick}
-                    aria-label={t("signIn")}
-                    title={t("signIn")}
-                  >
-                    <User size={19} strokeWidth={2.4} />
-                    {/* Warning badge is shown ONLY on the /signin page when not signed in */}
-                    {isSignInPage && (
-                      <span className="signin-warning-badge" aria-hidden="true">
-                        <AlertTriangle size={11} fill="#FFCC00" color="#35170F" strokeWidth={2.6} />
-                      </span>
-                    )}
-                  </button>
-
-                  {/* Thought Bubble prompt is shown on all other pages, but hidden on /signin */}
-                  {!isSignInPage && (
-                    <div className="signin-thought-bubble" onClick={handleProfileClick} style={{ cursor: "pointer", pointerEvents: "auto" }}>
-                      <span>{t("signIn")}</span>
-                      <span style={{ fontSize: "12px" }}>✨</span>
-                    </div>
+                <button
+                  type="button"
+                  id="btn-header-signin"
+                  className="header-signin-btn"
+                  onClick={handleProfileClick}
+                  aria-label={t("signIn")}
+                  title={t("signIn")}
+                >
+                  <span className="header-signin-icon-circle">
+                    <User size={15} strokeWidth={2.6} />
+                  </span>
+                  <span>{t("signIn")}</span>
+                  {/* Warning badge is shown on the /signin page when not signed in */}
+                  {isSignInPage && (
+                    <span className="signin-warning-badge" aria-hidden="true">
+                      <AlertTriangle size={10} fill="#FFCC00" color="#35170F" strokeWidth={2.6} />
+                    </span>
                   )}
-                </>
+                </button>
               )}
 
               {/* Profile Dropdown Menu */}

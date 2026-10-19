@@ -528,39 +528,102 @@ a {
   transform: scale(0.94);
 }
 
-.header-signin-circle-btn {
+/* Header Orders Icon Button */
+.header-orders-btn {
   width: 38px;
   height: 38px;
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--grad-primary);
-  border: 2px solid #FFFFFF;
-  color: #FFF7E8;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1.5px solid var(--border-base);
+  color: var(--clr-brown);
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(242, 140, 0, 0.35);
+  box-shadow: var(--shadow-sm);
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   flex-shrink: 0;
   position: relative;
 }
 
-.header-signin-circle-btn:hover {
-  transform: scale(1.08);
-  box-shadow: 0 6px 16px rgba(242, 140, 0, 0.45);
+.header-orders-btn:hover {
+  transform: scale(1.06);
+  background: #FFFFFF;
+  color: var(--clr-primary);
+  border-color: var(--clr-primary);
+  box-shadow: 0 4px 12px rgba(242, 140, 0, 0.25);
 }
 
-.header-signin-circle-btn:active {
+.header-orders-btn:active {
   transform: scale(0.94);
 }
 
-/* Warning Badge on Non-Signed-In Profile Circle */
+[data-theme="dark"] .header-orders-btn,
+.dark-theme .header-orders-btn {
+  background: rgba(46, 22, 14, 0.85);
+  border-color: var(--border-base);
+  color: #FFF7E8;
+}
+
+[data-theme="dark"] .header-orders-btn:hover,
+.dark-theme .header-orders-btn:hover {
+  background: var(--bg-card);
+  color: var(--clr-primary);
+  border-color: var(--clr-primary);
+}
+
+/* Header Sign In Button with Person Icon & Text */
+.header-signin-btn {
+  height: 38px;
+  padding: 0 14px 0 10px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: var(--grad-primary);
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  color: #35170F;
+  font-family: var(--font-game);
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(242, 140, 0, 0.35);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+  position: relative;
+  white-space: nowrap;
+}
+
+.header-signin-btn:hover {
+  transform: translateY(-1px) scale(1.03);
+  box-shadow: 0 6px 18px rgba(242, 140, 0, 0.45);
+  filter: brightness(1.04);
+}
+
+.header-signin-btn:active {
+  transform: scale(0.96);
+}
+
+.header-signin-icon-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #35170F;
+  flex-shrink: 0;
+}
+
+/* Warning Badge on Non-Signed-In Button */
 .signin-warning-badge {
   position: absolute;
-  top: -5px;
-  right: -5px;
-  width: 18px;
-  height: 18px;
+  top: -4px;
+  right: -4px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   background: #FFFFFF;
   border: 1.5px solid #E68A00;
@@ -615,52 +678,6 @@ a {
   }
   100% {
     transform: scale(1) rotate(0deg);
-  }
-}
-
-/* ── Profile Thought Bubble Prompt (for non-signed-in users) ── */
-.signin-thought-bubble {
-  position: absolute;
-  top: calc(100% + 8px);
-  right: -4px;
-  background: #FFFFFF;
-  color: #35170F;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 11px;
-  font-weight: 900;
-  white-space: nowrap;
-  box-shadow: 0 4px 16px rgba(53, 23, 15, 0.16), 0 0 0 1.5px rgba(242, 140, 0, 0.45);
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  pointer-events: none;
-  user-select: none;
-  animation: thoughtBubbleBounce 3s ease-in-out infinite;
-  z-index: 50;
-}
-
-/* Speech bubble arrow pointing to profile icon circle */
-.signin-thought-bubble::before {
-  content: "";
-  position: absolute;
-  top: -5px;
-  right: 14px;
-  width: 9px;
-  height: 9px;
-  background: #FFFFFF;
-  border-top: 1.5px solid rgba(242, 140, 0, 0.45);
-  border-left: 1.5px solid rgba(242, 140, 0, 0.45);
-  transform: rotate(45deg);
-  border-radius: 2px 0 0 0;
-}
-
-@keyframes thoughtBubbleBounce {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(3px);
   }
 }
 
