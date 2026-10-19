@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { User, LogOut, Package, Menu, AlertTriangle, Settings, Headphones } from "lucide-react";
+import { User, LogOut, Package, Menu, AlertTriangle, Settings, Headset } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { useSettings } from "../context/SettingsContext";
 import { UserAvatar } from "./UserAvatar";
@@ -79,7 +79,7 @@ export const Header: React.FC = () => {
               aria-label={t("navSupport")}
               title={t("navSupport")}
             >
-              <Headphones size={22} strokeWidth={2.2} />
+              <Headset size={22} strokeWidth={2.2} />
             </button>
 
             {/* Settings Icon Button (before signin/profile) */}

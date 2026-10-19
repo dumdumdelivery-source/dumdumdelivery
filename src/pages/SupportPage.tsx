@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-  Headphones,
+  Headset,
   Store,
   Truck,
   HelpCircle,
@@ -69,7 +69,7 @@ export const SupportPage: React.FC = () => {
               flexShrink: 0,
             }}
           >
-            <Headphones size={24} strokeWidth={2.4} />
+            <Headset size={24} strokeWidth={2.4} />
           </div>
           <div>
             <h1
@@ -550,7 +550,6 @@ export const SupportPage: React.FC = () => {
             fontWeight: 700,
           }}
         >
-          DumDum Delivery — Many Things. One Beat. 🥁⚡
         </div>
       </div>
     </div>

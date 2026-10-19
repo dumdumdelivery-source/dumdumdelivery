@@ -15,7 +15,7 @@ import {
   MapPin,
   Compass,
   Building2,
-  Headphones
+  Headset
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
@@ -388,7 +388,7 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
             <NavItem
               id="support"
               label={t("navSupport")}
-              icon={Headphones}
+              icon={Headset}
               active={location.pathname === "/support"}
               onClick={() => handleSelectNav("/support")}
             />
