@@ -6,8 +6,11 @@ import {
   signOut,
   onAuthStateChanged,
   GoogleAuthProvider,
+  signInWithCredential,
   type User
 } from "firebase/auth";
+import { Capacitor } from "@capacitor/core";
+import { FirebaseAuthentication } from "@capacitor-firebase/authentication";
 import { auth, googleProvider } from "../lib/firebase";
 import {
   getUserProfile,
@@ -36,20 +39,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    // Process redirect sign-in outcome if user used redirect
-    getRedirectResult(auth)
-      .then(async (result) => {
-        if (result?.user) {
-          const credential = GoogleAuthProvider.credentialFromResult(result);
-          const accessToken = credential?.accessToken;
-          const discoveredPhone = await extractPhoneNumberFromGoogle(result.user, accessToken);
-          const userProf = await createOrUpdateInitialProfile(result.user, discoveredPhone);
-          setProfile(userProf);
-        }
-      })
-      .catch((err) => {
-        console.warn("Redirect result check:", err);
-      });
+    // Process redirect sign-in outcome if user used redirect (Web only)
+    if (!Capacitor.isNativePlatform()) {
+      getRedirectResult(auth)
+        .then(async (result) => {
+          if (result?.user) {
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const accessToken = credential?.accessToken;
+            const discoveredPhone = await extractPhoneNumberFromGoogle(result.user, accessToken);
+            const userProf = await createOrUpdateInitialProfile(result.user, discoveredPhone);
+            setProfile(userProf);
+          }
+        })
+        .catch((err) => {
+          console.warn("Redirect result check:", err);
+        });
+    }
 
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
@@ -72,13 +77,38 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const signInWithGoogle = async () => {
     try {
-      const result = await signInWithPopup(auth, googleProvider);
-      if (result.user) {
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const accessToken = credential?.accessToken;
-        const discoveredPhone = await extractPhoneNumberFromGoogle(result.user, accessToken);
-        const userProf = await createOrUpdateInitialProfile(result.user, discoveredPhone);
-        setProfile(userProf);
+      if (Capacitor.isNativePlatform()) {
+        // Native Android / iOS Google Sign-in flow
+        const result = await FirebaseAuthentication.signInWithGoogle({
+          scopes: ["https://www.googleapis.com/auth/user.phonenumbers.read"],
+        });
+
+        const idToken = result.credential?.idToken;
+        if (!idToken) {
+          throw new Error("No ID token returned from native Google sign-in.");
+        }
+
+        const credential = GoogleAuthProvider.credential(idToken, result.credential?.accessToken);
+        const userCredential = await signInWithCredential(auth, credential);
+
+        if (userCredential.user) {
+          const discoveredPhone = await extractPhoneNumberFromGoogle(
+            userCredential.user,
+            result.credential?.accessToken
+          );
+          const userProf = await createOrUpdateInitialProfile(userCredential.user, discoveredPhone);
+          setProfile(userProf);
+        }
+      } else {
+        // Standard Web browser popup flow
+        const result = await signInWithPopup(auth, googleProvider);
+        if (result.user) {
+          const credential = GoogleAuthProvider.credentialFromResult(result);
+          const accessToken = credential?.accessToken;
+          const discoveredPhone = await extractPhoneNumberFromGoogle(result.user, accessToken);
+          const userProf = await createOrUpdateInitialProfile(result.user, discoveredPhone);
+          setProfile(userProf);
+        }
       }
     } catch (error: any) {
       console.error("Google Sign-In Error:", error);
@@ -88,7 +118,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const signInWithGoogleRedirect = async () => {
     try {
-      await signInWithRedirect(auth, googleProvider);
+      if (Capacitor.isNativePlatform()) {
+        await signInWithGoogle();
+      } else {
+        await signInWithRedirect(auth, googleProvider);
+      }
     } catch (error: any) {
       console.error("Google Sign-In Redirect Error:", error);
       throw error;
@@ -97,6 +131,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const signOutUser = async () => {
     try {
+      if (Capacitor.isNativePlatform()) {
+        try {
+          await FirebaseAuthentication.signOut();
+        } catch (e) {
+          console.warn("Native sign out warning:", e);
+        }
+      }
       await signOut(auth);
       setUser(null);
       setProfile(null);

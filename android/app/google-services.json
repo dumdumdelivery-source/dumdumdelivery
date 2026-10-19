@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "820745608248",
+    "project_id": "dumdum-delivery",
+    "storage_bucket": "dumdum-delivery.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:820745608248:android:e131132f97410a83eedacd",
+        "android_client_info": {
+          "package_name": "com.dumdumdelivery.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "820745608248-nbj69ms2ulr85dsk26qb4nbrjp26tckt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dumdumdelivery.app",
+            "certificate_hash": "0cd482272226515c1ba7e1275af4e03e42b9a02b"
+          }
+        },
+        {
+          "client_id": "820745608248-3v22sm1sng1hd1bma7od0e76g59i18j1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcsyK-xjlilt2gFJ6LChGd2_bLyHznboo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "820745608248-3v22sm1sng1hd1bma7od0e76g59i18j1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
