@@ -37,6 +37,13 @@ export const FloatingPillNav: React.FC<FloatingPillNavProps> = ({ onOpenAiModal:
 
   const navItems = [
     {
+      id: "home",
+      label: t("navHome"),
+      icon: Home,
+      path: "/",
+      active: isHome,
+    },
+    {
       id: "stores",
       label: t("navStores"),
       icon: Store,
@@ -50,13 +57,6 @@ export const FloatingPillNav: React.FC<FloatingPillNavProps> = ({ onOpenAiModal:
       path: "/cart",
       active: isCart,
       badge: totalItemCount > 0 ? totalItemCount : undefined,
-    },
-    {
-      id: "home",
-      label: t("navHome"),
-      icon: Home,
-      path: "/",
-      active: isHome,
     },
     {
       id: "settings",
