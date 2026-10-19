@@ -744,11 +744,13 @@ a {
   .header-orders-btn,
   .header-settings-btn,
   .header-support-btn {
-    width: 38px;
-    height: 38px;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
     padding: 0;
     justify-content: center;
-    border-radius: 8px;
+    border-radius: 12px;
     background: transparent;
     border: none;
     box-shadow: none !important;
@@ -1274,30 +1276,38 @@ a {
   background: #FFFFFF;
   border: 1.5px solid var(--border-base);
   border-radius: var(--radius-pill);
-  padding: 2px;
+  padding: 3px;
+  gap: 2px;
 }
 .quantity-btn {
-  width: 28px;
-  height: 28px;
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  min-height: 34px;
   border-radius: 50%;
   border: none;
-  background: transparent;
+  background: #FFF7ED;
   color: var(--clr-brown);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 900;
+  transition: all 0.15s ease;
 }
-.quantity-btn:hover {
-  background: var(--clr-primary-lt);
-  color: var(--clr-primary-dk);
+.quantity-btn:hover:not(:disabled) {
+  background: var(--clr-primary);
+  color: #FFFFFF;
+}
+.quantity-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
 }
 .quantity-val {
-  min-width: 28px;
+  min-width: 32px;
   text-align: center;
   font-weight: 800;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: var(--clr-brown);
 }
 

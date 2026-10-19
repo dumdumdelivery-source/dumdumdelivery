@@ -193,23 +193,25 @@ export const SupportPage: React.FC = () => {
                 type="button"
                 onClick={() => handleCopy("addshop@dumdumddelivery.com", "store-email")}
                 style={{
-                  background: copiedKey === "store-email" ? "rgba(26, 110, 66, 0.12)" : "transparent",
+                  background: copiedKey === "store-email" ? "rgba(26, 110, 66, 0.15)" : "rgba(242, 140, 0, 0.12)",
                   border: "none",
                   cursor: "pointer",
-                  color: copiedKey === "store-email" ? "var(--clr-success)" : "var(--txt-muted)",
+                  color: copiedKey === "store-email" ? "var(--clr-success)" : "#B8420B",
                   display: "inline-flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  width: "32px",
-                  height: "32px",
-                  borderRadius: "8px",
+                  width: "38px",
+                  height: "38px",
+                  minWidth: "38px",
+                  minHeight: "38px",
+                  borderRadius: "10px",
                   flexShrink: 0,
                   transition: "all 0.2s ease",
                 }}
                 aria-label="Copy Email"
                 title={copiedKey === "store-email" ? "Copied!" : "Copy Email"}
               >
-                {copiedKey === "store-email" ? <Check size={16} /> : <Copy size={16} />}
+                {copiedKey === "store-email" ? <Check size={18} strokeWidth={2.6} /> : <Copy size={18} strokeWidth={2.4} />}
               </button>
             </div>
 
@@ -220,7 +222,7 @@ export const SupportPage: React.FC = () => {
                 alignItems: "center",
                 justifyContent: "space-between",
                 gap: "0.5rem",
-                paddingTop: "0.4rem",
+                paddingTop: "0.5rem",
                 borderTop: "1px dashed var(--border-base)",
               }}
             >
@@ -236,32 +238,34 @@ export const SupportPage: React.FC = () => {
                   textDecoration: "none",
                 }}
               >
-                <Phone size={16} color="var(--clr-primary)" style={{ flexShrink: 0 }} />
+                <Phone size={18} color="var(--clr-primary)" style={{ flexShrink: 0 }} />
                 <span>9360733323</span>
               </a>
 
-              <div style={{ display: "flex", gap: "0.4rem", alignItems: "center" }}>
+              <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
                 <button
                   type="button"
                   onClick={() => handleCopy("9360733323", "store-phone")}
                   style={{
-                    background: copiedKey === "store-phone" ? "rgba(26, 110, 66, 0.12)" : "transparent",
+                    background: copiedKey === "store-phone" ? "rgba(26, 110, 66, 0.15)" : "rgba(242, 140, 0, 0.12)",
                     border: "none",
                     cursor: "pointer",
-                    color: copiedKey === "store-phone" ? "var(--clr-success)" : "var(--txt-muted)",
+                    color: copiedKey === "store-phone" ? "var(--clr-success)" : "#B8420B",
                     display: "inline-flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    width: "32px",
-                    height: "32px",
-                    borderRadius: "8px",
+                    width: "38px",
+                    height: "38px",
+                    minWidth: "38px",
+                    minHeight: "38px",
+                    borderRadius: "10px",
                     flexShrink: 0,
                     transition: "all 0.2s ease",
                   }}
                   aria-label="Copy Phone Number"
                   title={copiedKey === "store-phone" ? "Copied!" : "Copy Phone Number"}
                 >
-                  {copiedKey === "store-phone" ? <Check size={16} /> : <Copy size={16} />}
+                  {copiedKey === "store-phone" ? <Check size={18} strokeWidth={2.6} /> : <Copy size={18} strokeWidth={2.4} />}
                 </button>
 
                 <a
@@ -269,9 +273,11 @@ export const SupportPage: React.FC = () => {
                   style={{
                     background: "var(--grad-primary)",
                     color: "var(--txt-on-orange)",
-                    width: "32px",
-                    height: "32px",
-                    borderRadius: "8px",
+                    width: "38px",
+                    height: "38px",
+                    minWidth: "38px",
+                    minHeight: "38px",
+                    borderRadius: "10px",
                     textDecoration: "none",
                     display: "inline-flex",
                     alignItems: "center",

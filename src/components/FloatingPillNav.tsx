@@ -265,9 +265,9 @@ export const FloatingPillNav: React.FC<FloatingPillNavProps> = ({ onOpenAiModal:
               {/* Menu Label */}
               <span
                 style={{
-                  fontSize: isActive ? "11px" : "10px",
+                  fontSize: isActive ? "12px" : "11px",
                   fontWeight: isActive ? 900 : 700,
-                  color: isActive ? "#FFB347" : "#BFA095",
+                  color: isActive ? "#FFB347" : "#D4B2A7",
                   lineHeight: 1.2,
                   letterSpacing: "0.015em",
                   whiteSpace: "nowrap",

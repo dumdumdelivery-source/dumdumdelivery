@@ -403,11 +403,27 @@ export const StoresPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Right Chevron Down */}
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", paddingLeft: "4px" }}>
+            {/* Right Side: Tap to Choose badge + Chevron Down */}
+            <div style={{ display: "flex", alignItems: "center", gap: "6px", flexShrink: 0 }}>
+              {!selectedLocation && (
+                <span
+                  style={{
+                    background: "rgba(242, 140, 0, 0.15)",
+                    color: "#B8420B",
+                    fontSize: "11px",
+                    fontWeight: 900,
+                    padding: "4px 8px",
+                    borderRadius: "9999px",
+                    letterSpacing: "0.02em",
+                  }}
+                >
+                  TAP
+                </span>
+              )}
               <ChevronDown
-                size={18}
-                color="#8C6D62"
+                size={20}
+                color={selectedLocation ? "#8C6D62" : "#B8420B"}
+                strokeWidth={2.8}
                 style={{
                   transform: isDropdownOpen ? "rotate(180deg)" : "rotate(0deg)",
                   transition: "transform 0.25s cubic-bezier(0.16, 1, 0.3, 1)",
@@ -432,13 +448,22 @@ export const StoresPage: React.FC = () => {
             <div
               id="stores-empty-location-view"
               className="game-card"
+              onClick={() => setIsDropdownOpen(true)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  setIsDropdownOpen(true);
+                }
+              }}
+              aria-label="Choose your location"
               style={{
                 maxWidth: "460px",
                 width: "100%",
                 background: "#FFFFFF",
                 borderRadius: "28px",
-                border: "1.5px solid #F0E3D3",
-                boxShadow: "0 10px 30px rgba(53, 23, 15, 0.06)",
+                border: "2px dashed #F28C00",
+                boxShadow: "0 10px 30px rgba(242, 140, 0, 0.08)",
                 padding: "clamp(1.5rem, 3.5vh, 2.25rem) clamp(1.25rem, 4vw, 2rem)",
                 display: "flex",
                 flexDirection: "column",
@@ -447,6 +472,7 @@ export const StoresPage: React.FC = () => {
                 textAlign: "center",
                 margin: "auto",
                 boxSizing: "border-box",
+                cursor: "pointer",
               }}
             >
               <div
@@ -497,13 +523,43 @@ export const StoresPage: React.FC = () => {
                 style={{
                   fontSize: "clamp(0.825rem, 1.7vh, 0.925rem)",
                   color: "var(--txt-muted)",
-                  margin: 0,
+                  margin: "0 0 1.25rem 0",
                   lineHeight: 1.4,
                   maxWidth: "340px",
                 }}
               >
                 {t("chooseLocalArea")}
               </p>
+
+              {/* Big, Clear Action Button for All Ages */}
+              <button
+                type="button"
+                id="empty-state-choose-location-btn"
+                className="btn-primary"
+                onClick={() => setIsDropdownOpen(true)}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "0.55rem",
+                  padding: "0.85rem 1.75rem",
+                  fontSize: "1rem",
+                  fontWeight: 900,
+                  borderRadius: "9999px",
+                  boxShadow: "0 8px 24px rgba(242, 140, 0, 0.35)",
+                  border: "none",
+                  cursor: "pointer",
+                  width: "100%",
+                  maxWidth: "280px",
+                  transition: "transform 0.18s ease, box-shadow 0.18s ease",
+                }}
+                onMouseDown={(e) => (e.currentTarget.style.transform = "scale(0.97)")}
+                onMouseUp={(e) => (e.currentTarget.style.transform = "scale(1)")}
+              >
+                <MapPin size={18} strokeWidth={2.6} />
+                <span>Select Your Location</span>
+                <ChevronRight size={18} strokeWidth={2.6} />
+              </button>
             </div>
           </div>
         ) : (
