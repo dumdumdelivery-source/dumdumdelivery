@@ -3,18 +3,15 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 import { Capacitor } from '@capacitor/core'
-import { StatusBar, Style } from '@capacitor/status-bar'
+import { StatusBar } from '@capacitor/status-bar'
 
-// Configure native status bar edge-to-edge overlay with visible icons
+// Configure native status bar: hidden with overlay so content extends to the top edge
 if (Capacitor.isNativePlatform()) {
   StatusBar.setOverlaysWebView({ overlay: true }).catch((err) => {
     console.warn("Failed to set overlaysWebView:", err);
   });
-  StatusBar.show().catch((err) => {
-    console.warn("Failed to show status bar:", err);
-  });
-  StatusBar.setStyle({ style: Style.Light }).catch((err) => {
-    console.warn("Failed to set status bar style:", err);
+  StatusBar.hide().catch((err) => {
+    console.warn("Failed to hide status bar:", err);
   });
 }
 
