@@ -433,28 +433,12 @@ a {
   height: 70px;
   gap: 0.75rem;
   padding: 0 1.5rem;
-  position: relative;
 }
 .header-left {
   display: flex;
   align-items: center;
   gap: 0.85rem;
-  flex: 1;
-  justify-content: flex-start;
   min-width: 0;
-  z-index: 2;
-}
-
-.header-center {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: auto;
-  z-index: 1;
 }
 
 .btn-menu-toggle {
@@ -494,27 +478,25 @@ a {
 }
 
 .brand-logo {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 0.65rem;
+  font-weight: 900;
+  font-size: 1.35rem;
+  color: var(--clr-brown);
+  letter-spacing: -0.02em;
   text-decoration: none;
-  outline: none;
+  min-width: 0;
 }
 .brand-logo-img {
-  height: 46px;
-  width: 46px;
+  height: 44px;
+  max-width: 195px;
   object-fit: contain;
   display: block;
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  filter: drop-shadow(0 2px 6px rgba(53, 23, 15, 0.12));
-}
-.brand-logo-d-mark {
-  height: 46px;
-  width: 46px;
-  object-fit: contain;
+  transition: transform 0.2s ease;
 }
 .brand-logo:hover .brand-logo-img {
-  transform: scale(1.06);
+  transform: scale(1.02);
 }
 
 .header-actions {
@@ -546,8 +528,9 @@ a {
   transform: scale(0.94);
 }
 
-/* Header Orders Icon Button (Matches Header Menu Toggle Style) */
-.header-orders-btn {
+/* Header Orders & Settings Icon Buttons (Matches Header Menu Toggle Style) */
+.header-orders-btn,
+.header-settings-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -567,29 +550,37 @@ a {
 }
 
 .header-orders-btn:focus,
-.header-orders-btn:focus-visible {
+.header-orders-btn:focus-visible,
+.header-settings-btn:focus,
+.header-settings-btn:focus-visible {
   outline: none !important;
   box-shadow: none !important;
 }
 
-.header-orders-btn:hover {
+.header-orders-btn:hover,
+.header-settings-btn:hover {
   background: rgba(53, 23, 15, 0.08);
   color: var(--clr-primary);
   transform: scale(1.06);
 }
 
-.header-orders-btn:active {
+.header-orders-btn:active,
+.header-settings-btn:active {
   transform: scale(0.94);
   background: rgba(53, 23, 15, 0.12);
 }
 
 [data-theme="dark"] .header-orders-btn,
-.dark-theme .header-orders-btn {
+[data-theme="dark"] .header-settings-btn,
+.dark-theme .header-orders-btn,
+.dark-theme .header-settings-btn {
   color: #FFF7E8;
 }
 
 [data-theme="dark"] .header-orders-btn:hover,
-.dark-theme .header-orders-btn:hover {
+[data-theme="dark"] .header-settings-btn:hover,
+.dark-theme .header-orders-btn:hover,
+.dark-theme .header-settings-btn:hover {
   background: rgba(255, 255, 255, 0.08);
   color: var(--clr-primary);
 }
@@ -741,7 +732,8 @@ a {
   }
 
   .btn-menu-toggle,
-  .header-orders-btn {
+  .header-orders-btn,
+  .header-settings-btn {
     width: 38px;
     height: 38px;
     padding: 0;
@@ -752,11 +744,9 @@ a {
     box-shadow: none !important;
   }
 
-  .brand-logo-img,
-  .brand-logo-d-mark {
-    height: 38px;
-    width: 38px;
-    max-width: 38px;
+  .brand-logo-img {
+    height: 36px;
+    max-width: 140px;
   }
 
   .header-actions {

@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Home, Store, ShoppingCart, User, Settings } from "lucide-react";
+import { Home, Store, ShoppingCart, User, Package } from "lucide-react";
 import { useCart } from "../context/CartContext";
 import { useSettings } from "../context/SettingsContext";
 
@@ -17,11 +17,10 @@ export const FloatingPillNav: React.FC<FloatingPillNavProps> = ({ onOpenAiModal:
   const isHome = location.pathname === "/" || location.pathname === "/home";
   const isStores = location.pathname === "/stores";
   const isCart = location.pathname === "/cart";
+  const isOrders = location.pathname === "/orders";
   const isProfile =
     location.pathname === "/profile" ||
-    location.pathname === "/orders" ||
     location.pathname === "/signin";
-  const isSettings = location.pathname === "/settings";
 
   const handleNav = (path: string) => {
     if (path === "/" || path === "/home") {
@@ -59,11 +58,11 @@ export const FloatingPillNav: React.FC<FloatingPillNavProps> = ({ onOpenAiModal:
       badge: totalItemCount > 0 ? totalItemCount : undefined,
     },
     {
-      id: "settings",
-      label: t("navSettings"),
-      icon: Settings,
-      path: "/settings",
-      active: isSettings,
+      id: "orders",
+      label: t("navOrders"),
+      icon: Package,
+      path: "/orders",
+      active: isOrders,
     },
     {
       id: "profile",

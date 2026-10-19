@@ -7,6 +7,7 @@ export const translations = {
     navHome: "Home",
     navStores: "Stores",
     navCart: "Cart",
+    navOrders: "Orders",
     navSettings: "Settings",
     navProfile: "Profile",
 
@@ -100,6 +101,7 @@ export const translations = {
     navHome: "முகப்பு",
     navStores: "கடைகள்",
     navCart: "கூடை",
+    navOrders: "ஆர்டர்கள்",
     navSettings: "அமைப்புகள்",
     navProfile: "சுயவிவரம்",
 

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { User, LogOut, Package, Menu, AlertTriangle, Truck } from "lucide-react";
+import { User, LogOut, Package, Menu, AlertTriangle, Settings } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { useSettings } from "../context/SettingsContext";
 import { UserAvatar } from "./UserAvatar";
@@ -46,7 +46,7 @@ export const Header: React.FC = () => {
     <>
       <header className="app-header">
         <div className="app-container header-inner">
-          {/* Left section: Menu button */}
+          {/* Left section: Menu button + Brand Logo */}
           <div className="header-left">
             <button
               type="button"
@@ -58,31 +58,28 @@ export const Header: React.FC = () => {
             >
               <Menu size={24} strokeWidth={2.2} />
             </button>
-          </div>
 
-          {/* Center section: Perfectly centered D Logo */}
-          <div className="header-center">
             <Link to="/" className="brand-logo" aria-label="DumDum Delivery - Many Things. One Beat.">
               <img
-                src="/logo-d-courier-transparent.png"
+                src="/logo.png"
                 alt="DumDum Delivery"
-                className="brand-logo-img brand-logo-d-mark"
+                className="brand-logo-img"
               />
             </Link>
           </div>
 
           {/* Right side navigation & actions */}
           <div className="header-actions">
-            {/* Orders Icon Button (before signin/profile) */}
+            {/* Settings Icon Button (before signin/profile) */}
             <button
               type="button"
-              id="btn-header-orders"
-              className="header-orders-btn"
-              onClick={() => navigate(user ? "/orders" : "/signin")}
-              aria-label={t("orderHistory")}
-              title={t("orderHistory")}
+              id="btn-header-settings"
+              className="header-settings-btn"
+              onClick={() => navigate("/settings")}
+              aria-label={t("navSettings")}
+              title={t("navSettings")}
             >
-              <Truck size={24} strokeWidth={2.2} />
+              <Settings size={23} strokeWidth={2.2} />
             </button>
 
             {/* User profile / Sign In action */}
