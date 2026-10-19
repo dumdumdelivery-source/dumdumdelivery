@@ -61,10 +61,11 @@ export const Header: React.FC = () => {
 
             <Link to="/" className="brand-logo" aria-label="DumDum Delivery - Many Things. One Beat.">
               <img
-                src="/logo.png"
+                src="/logo-d-courier-transparent.png"
                 alt="DumDum Delivery"
-                className="brand-logo-img"
+                className="brand-logo-img brand-logo-d-mark"
               />
+              <span className="brand-logo-name">DumDum</span>
             </Link>
           </div>
 
