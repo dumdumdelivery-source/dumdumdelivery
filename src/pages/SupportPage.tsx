@@ -193,32 +193,23 @@ export const SupportPage: React.FC = () => {
                 type="button"
                 onClick={() => handleCopy("addshop@dumdumddelivery.com", "store-email")}
                 style={{
-                  background: "transparent",
+                  background: copiedKey === "store-email" ? "rgba(26, 110, 66, 0.12)" : "transparent",
                   border: "none",
                   cursor: "pointer",
                   color: copiedKey === "store-email" ? "var(--clr-success)" : "var(--txt-muted)",
                   display: "inline-flex",
                   alignItems: "center",
-                  gap: "4px",
-                  padding: "4px 8px",
+                  justifyContent: "center",
+                  width: "32px",
+                  height: "32px",
                   borderRadius: "8px",
-                  fontSize: "11px",
-                  fontWeight: 800,
                   flexShrink: 0,
+                  transition: "all 0.2s ease",
                 }}
-                title="Copy Email"
+                aria-label="Copy Email"
+                title={copiedKey === "store-email" ? "Copied!" : "Copy Email"}
               >
-                {copiedKey === "store-email" ? (
-                  <>
-                    <Check size={14} />
-                    <span>Copied!</span>
-                  </>
-                ) : (
-                  <>
-                    <Copy size={14} />
-                    <span>Copy</span>
-                  </>
-                )}
+                {copiedKey === "store-email" ? <Check size={16} /> : <Copy size={16} />}
               </button>
             </div>
 
@@ -249,37 +240,28 @@ export const SupportPage: React.FC = () => {
                 <span>9360733323</span>
               </a>
 
-              <div style={{ display: "flex", gap: "0.25rem", alignItems: "center" }}>
+              <div style={{ display: "flex", gap: "0.4rem", alignItems: "center" }}>
                 <button
                   type="button"
                   onClick={() => handleCopy("9360733323", "store-phone")}
                   style={{
-                    background: "transparent",
+                    background: copiedKey === "store-phone" ? "rgba(26, 110, 66, 0.12)" : "transparent",
                     border: "none",
                     cursor: "pointer",
                     color: copiedKey === "store-phone" ? "var(--clr-success)" : "var(--txt-muted)",
                     display: "inline-flex",
                     alignItems: "center",
-                    gap: "4px",
-                    padding: "4px 8px",
+                    justifyContent: "center",
+                    width: "32px",
+                    height: "32px",
                     borderRadius: "8px",
-                    fontSize: "11px",
-                    fontWeight: 800,
                     flexShrink: 0,
+                    transition: "all 0.2s ease",
                   }}
-                  title="Copy Phone Number"
+                  aria-label="Copy Phone Number"
+                  title={copiedKey === "store-phone" ? "Copied!" : "Copy Phone Number"}
                 >
-                  {copiedKey === "store-phone" ? (
-                    <>
-                      <Check size={14} />
-                      <span>Copied!</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy size={14} />
-                      <span>Copy</span>
-                    </>
-                  )}
+                  {copiedKey === "store-phone" ? <Check size={16} /> : <Copy size={16} />}
                 </button>
 
                 <a
@@ -287,17 +269,20 @@ export const SupportPage: React.FC = () => {
                   style={{
                     background: "var(--grad-primary)",
                     color: "var(--txt-on-orange)",
-                    padding: "4px 10px",
+                    width: "32px",
+                    height: "32px",
                     borderRadius: "8px",
-                    fontSize: "11px",
-                    fontWeight: 900,
                     textDecoration: "none",
                     display: "inline-flex",
                     alignItems: "center",
-                    gap: "4px",
+                    justifyContent: "center",
+                    flexShrink: 0,
+                    boxShadow: "0 2px 8px rgba(242, 140, 0, 0.3)",
                   }}
+                  aria-label="Call Now"
+                  title="Call Now"
                 >
-                  Call Now
+                  <Phone size={15} strokeWidth={2.4} />
                 </a>
               </div>
             </div>
@@ -392,32 +377,23 @@ export const SupportPage: React.FC = () => {
               type="button"
               onClick={() => handleCopy("ordertracker@dumdumdelivery.com", "track-email")}
               style={{
-                background: "transparent",
+                background: copiedKey === "track-email" ? "rgba(26, 110, 66, 0.12)" : "transparent",
                 border: "none",
                 cursor: "pointer",
                 color: copiedKey === "track-email" ? "var(--clr-success)" : "var(--txt-muted)",
                 display: "inline-flex",
                 alignItems: "center",
-                gap: "4px",
-                padding: "4px 8px",
+                justifyContent: "center",
+                width: "32px",
+                height: "32px",
                 borderRadius: "8px",
-                fontSize: "11px",
-                fontWeight: 800,
                 flexShrink: 0,
+                transition: "all 0.2s ease",
               }}
-              title="Copy Email"
+              aria-label="Copy Email"
+              title={copiedKey === "track-email" ? "Copied!" : "Copy Email"}
             >
-              {copiedKey === "track-email" ? (
-                <>
-                  <Check size={14} />
-                  <span>Copied!</span>
-                </>
-              ) : (
-                <>
-                  <Copy size={14} />
-                  <span>Copy</span>
-                </>
-              )}
+              {copiedKey === "track-email" ? <Check size={16} /> : <Copy size={16} />}
             </button>
           </div>
         </section>
@@ -510,32 +486,23 @@ export const SupportPage: React.FC = () => {
               type="button"
               onClick={() => handleCopy("support@dumdumdelivery.com", "common-email")}
               style={{
-                background: "transparent",
+                background: copiedKey === "common-email" ? "rgba(26, 110, 66, 0.12)" : "transparent",
                 border: "none",
                 cursor: "pointer",
                 color: copiedKey === "common-email" ? "var(--clr-success)" : "var(--txt-muted)",
                 display: "inline-flex",
                 alignItems: "center",
-                gap: "4px",
-                padding: "4px 8px",
+                justifyContent: "center",
+                width: "32px",
+                height: "32px",
                 borderRadius: "8px",
-                fontSize: "11px",
-                fontWeight: 800,
                 flexShrink: 0,
+                transition: "all 0.2s ease",
               }}
-              title="Copy Email"
+              aria-label="Copy Email"
+              title={copiedKey === "common-email" ? "Copied!" : "Copy Email"}
             >
-              {copiedKey === "common-email" ? (
-                <>
-                  <Check size={14} />
-                  <span>Copied!</span>
-                </>
-              ) : (
-                <>
-                  <Copy size={14} />
-                  <span>Copy</span>
-                </>
-              )}
+              {copiedKey === "common-email" ? <Check size={16} /> : <Copy size={16} />}
             </button>
           </div>
         </section>
